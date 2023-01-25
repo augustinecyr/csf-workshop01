@@ -1,0 +1,137 @@
+<!-- Basics -->
+<p>employee works!</p>
+<h1 *ngIf="visible">{{title}}</h1>
+
+<!-- If Else -->
+<input type="radio" name="topgun" (click)="OnChange(true)"> true
+<input type="radio" name="topgun" (click)="OnChange(false)"> false
+
+
+<div *ngIf="isVisible; then thenBlock; else elseBlock"></div>
+
+<ng-template #thenBlock>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam omnis sed recusandae ullam hic illum
+        voluptate porro adipisci nam fugit enim nesciunt cupiditate, fuga molestias nemo autem aperiam possimus
+        voluptas.</p>
+</ng-template>
+
+<ng-template #elseBlock>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione repellat fuga neque est quos ipsam sed
+        magni, ex, recusandae impedit fugit, accusamus voluptates. Officiis sunt eveniet magni id voluptates modi?
+    </p>
+</ng-template>
+<br>
+<!-- 
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem modi quo ea molestias! Sit dicta fugiat porro
+    praesentium dolor reiciendis minima, vero quasi architecto officiis? Repellendus ab perferendis ipsa fugiat!</p>
+
+<p hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae harum eveniet cumque voluptas ipsa provident
+    id repellat pariatur quos adipisci? Mollitia vero consequatur commodi. Quia maiores magni quas porro recusandae!</p>
+-->
+
+<!-- Switch Case -->
+<select (change)="SetColor($event)">
+    <option value="">Select Color</option>
+    <option value="R">Red</option>
+    <option value="O">Orange</option>
+    <option value="Y">Yellow</option>
+    <option value="G">Green</option>
+    <option value="B">Blue</option>
+    <option value="V">Violet</option>
+</select>
+
+<div [ngSwitch]="color">
+    <div *ngSwitchCase="'R'">
+        <p style="color: red">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit eius illum quibusdam corrupti dicta
+            incidunt a eveniet, nihil exercitationem, molestiae modi quas, magni saepe reiciendis at assumenda minus
+            beatae laborum?
+        </p>
+    </div>
+
+    <div *ngSwitchCase="'O'">
+        <p style="color: orange">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio possimus, provident officia mollitia quaerat
+            quisquam voluptatem repellat doloribus ullam! Cupiditate voluptate eos non. Obcaecati quis, quia vero harum
+            voluptas iusto?
+        </p>
+    </div>
+
+    <div *ngSwitchCase="'Y'">
+        <p style="color: yellow">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio possimus, provident officia mollitia quaerat
+            quisquam voluptatem repellat doloribus ullam! Cupiditate voluptate eos non. Obcaecati quis, quia vero harum
+            voluptas iusto?
+        </p>
+    </div>
+
+    <div *ngSwitchCase="'G'">
+        <p style="color: green">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio possimus, provident officia mollitia quaerat
+            quisquam voluptatem repellat doloribus ullam! Cupiditate voluptate eos non. Obcaecati quis, quia vero harum
+            voluptas iusto?
+        </p>
+    </div>
+
+    <div *ngSwitchCase="'B'">
+        <p style="color: blue">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio possimus, provident officia mollitia quaerat
+            quisquam voluptatem repellat doloribus ullam! Cupiditate voluptate eos non. Obcaecati quis, quia vero harum
+            voluptas iusto?
+        </p>
+    </div>
+
+    <div *ngSwitchCase="'V'">
+        <p style="color: violet">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio possimus, provident officia mollitia quaerat
+            quisquam voluptatem repellat doloribus ullam! Cupiditate voluptate eos non. Obcaecati quis, quia vero harum
+            voluptas iusto?
+        </p>
+    </div>
+</div>
+<br>
+<table [ngStyle]="{'color': (number1 > number2)? 'pink':'grey'}" border="1">
+    <thead>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>First Record</th>
+        <th>Last Record</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of Employee; let i = index; first as isFirst; last as isLast; trackBy:TrackByEmployeeName;
+        even as isEven; odd as isOdd" [ngStyle]="{'color' : isEven? 'blue' :'purple'}">
+            <td>{{i + 1}}</td>
+            <td>{{employee.Name | uppercase}}</td>
+            <td [ngStyle]="{'color': CheckAge(employee.Age)}">{{employee.Age}}</td>
+            <td>{{employee.Gender}}</td>
+            <td>{{isFirst}}</td>
+            <td>{{isLast}}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<button (click)="GetMoreEmployee()">Add more employee</button>
+
+<p [ngClass]="'color1'">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eveniet ad aspernatur veniam,
+    fugit ab quos nam officia veritatis, corporis inventore, omnis vel rerum eaque perferendis ut sit explicabo
+    assumenda.</p>
+
+<div>Sum of 2 numbers: {{ 10 }} + {{ 20 }} = {{ 10 + 20 }}</div>
+<br>
+<br>
+<div>Sum of 2 numbers: {{ number1 }} + {{ number2 }} = {{ number1 + number2 }}</div>
+
+<br>
+<br>
+<h1 [innerHTML]="title"></h1>
+
+<br>
+<br>
+<button (click)="ShowSomeData()">Show Some Data</button>
+
+<br><br>
+Enter My Name: <input type="text" [value]="myName" (input)="myName = $any($event.target).value">
+<br>
+Updated MyName is {{myName}}
